@@ -4,19 +4,17 @@ import { Card, Row, Col, Image, ListGroup, Button } from 'react-bootstrap';
 import axios from 'axios';
 import Rating from '../components/Rating';
 import { Link, useParams } from 'react-router-dom';
-import products from '../products';
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = () => {
   const { id } = useParams();
-  const product = products.find(p => p._id === id);
-  // const [product, setProduct] = useState({});
-  // useEffect(() => {
-  //     const fetchProducts = async () => {
-  //         const result = await axios.get('http://localhost:4000/api/products/6');
-  //         setProduct(result.data);
-  //     }
-  //     fetchProducts();
-  // }, []);
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+      const fetchProducts = async () => {
+          const result = await axios.get(`/api/products/${id}`);
+          setProduct(result.data);
+      }
+      fetchProducts();
+  }, [id]);
   return (
     <>
       <Link to='/' className='btn btn-light my-3'>

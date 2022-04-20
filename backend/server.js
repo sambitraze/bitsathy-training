@@ -1,35 +1,26 @@
-const express = require('express');
-// const connectDB = require('./config/db.js');
-const products = require('./data/products');
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+import products from './data/products.js';
+import colors from 'colors';
 
-// const ProductRoute = require('./routes/product');
+import ProductRoute from './routes/product.js';
+import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
-//app intialization
+//config
 const app = express();
-
-// connectDB
+dotenv.config();
+connectDB();
 
 //routes
-// app.use('/api/products', ProductRoute);
+app.use('/api/products', ProductRoute);
+app.use(notFound);
+app.use(errorHandler);
 app.get('/', (req, res) => {
     res.send('hi my name is jamasdades');
 });
 
-app.get('/api/products', (req, res) => {
-    res.json(products)
-});
-
-app.get('/api/products/:id', (req, res) => {
-    const productId = req.params.id;
-    const product = products.find(product => product._id === productId);
-    if (product) {
-        res.json(product);
-    } else {
-        res.status(404).json({ message: 'Product not found' });
-    }
-})
-
-//connect to live server
-app.listen(4000, () => {
-    console.log('Server is running on port 4000');
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+    console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold);
 });

@@ -2,11 +2,14 @@
   "name": "bitsathy-training",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:seed": "node backend/seeder.js",
+    "data:destroy": "node backend/seeder.js -d"
   },
   "repository": {
     "type": "git",
@@ -20,7 +23,7 @@
   },
   "homepage": "https://github.com/sambitraze/bitsathy-training#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
