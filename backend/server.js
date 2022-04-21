@@ -4,15 +4,18 @@ import connectDB from './config/db.js';
 import colors from 'colors';
 
 import ProductRoute from './routes/product.js';
+import UserRoute from './routes/user.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
 //config
 const app = express();
 dotenv.config();
 connectDB();
+app.use(express.json());
 
 //routes
 app.use('/api/products', ProductRoute);
+app.use('/api/users', UserRoute);
 app.get('/', (req, res) => {
     res.send('hi my name is jamasdades');
 });
