@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import products from './data/products.js';
 import colors from 'colors';
 
 import ProductRoute from './routes/product.js';
@@ -14,11 +13,11 @@ connectDB();
 
 //routes
 app.use('/api/products', ProductRoute);
-app.use(notFound);
-app.use(errorHandler);
 app.get('/', (req, res) => {
     res.send('hi my name is jamasdades');
 });
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
