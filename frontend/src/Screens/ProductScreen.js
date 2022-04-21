@@ -20,7 +20,7 @@ const ProductScreen = ({ history }) => {
     dispatch(listProductDetials(id));
   }, [dispatch, id]);
   const addToCartHandler = () => {
-    navigate(`/cart/${id}?qty=${qty}`);
+    navigate(`/cart/${id}/${qty}`);
   }
   return (
     <>

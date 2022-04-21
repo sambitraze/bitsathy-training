@@ -8,11 +8,19 @@ const reducer = combineReducers({
     productDetails: productDetailsReducer,
     cart: cartReducer
 });
-// const initialState = {}
+
+const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+
+const initialState = {
+    cart: {
+        cartItems: cartItemsFromStorage
+    }
+}
 const middleware = [thunk];
 const store = configureStore({
     reducer,
     devTools: process.env.NODE_ENV !== 'production',
     middleware: middleware,
+    preloadedState: initialState
 })
 export default store;
