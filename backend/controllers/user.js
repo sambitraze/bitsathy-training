@@ -26,7 +26,7 @@ const authUser = asyncHandler(async (req, res) => {
 });
 
 const getUserProfile = asyncHandler(async (req, res) => {
-    res.json("User profile")
+    res.json(req.user)
 })
 
 export {

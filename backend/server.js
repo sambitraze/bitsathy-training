@@ -19,7 +19,7 @@ app.use('/api/users', UserRoute);
 app.get('/', (req, res) => {
     res.send('hi my name is jamasdades');
 });
-app.use(notFound);
+// app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 4000;
