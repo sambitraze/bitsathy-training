@@ -1,14 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { configureStore } from '@reduxjs/toolkit'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import posts from './reducers/posts';
+const initialState = {
+}
+const middleware = [thunk];
+const reducer = combineReducers({
+  postList: posts,
+});
+const store = configureStore({
+  reducer, 
+  middleware: middleware,
+  preloadedState: initialState
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
