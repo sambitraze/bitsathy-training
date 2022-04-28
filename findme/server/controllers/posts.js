@@ -1,5 +1,17 @@
 import Post from "../models/posts.js";
 
+export const updatePost = async (req, res) => {
+    const post = await Post.findById(req.params.id);
+    if (!post) return res.status(404).send("Post not found");
+    
+    const updatedPost = await Post.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+    );
+    res.send(updatedPost);
+}
+
 export const getAllPost = (req, res) => {
     try {
         Post.find({}, (err, posts) => {

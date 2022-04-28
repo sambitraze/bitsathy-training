@@ -12,7 +12,7 @@ const initialState = {
 }
 const middleware = [thunk];
 const reducer = combineReducers({
-  postList: posts,
+  posts: posts,
 });
 const store = configureStore({
   reducer, 
