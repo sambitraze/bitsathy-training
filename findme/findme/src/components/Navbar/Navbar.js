@@ -8,12 +8,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import decode from 'jwt-decode';
 const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    console.log(user);
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useNavigate();
     const logout = () => {
-        dispatch({ type: actionType.LOGOUT });
+        dispatch({ type: 'LOGOUT' });
 
         history('/auth');
 
