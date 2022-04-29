@@ -32,6 +32,7 @@ const SignUp = () => {
     e.preventDefault();
 
     if (isSignup) {
+      console.log('signup');
       dispatch(signup(form, history));
     } else {
       dispatch(signin(form, history));
@@ -45,7 +46,7 @@ const SignUp = () => {
     try {
       dispatch({ type: 'AUTH', data: { result, token } });
 
-      history.push('/');
+      history('/');
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +79,7 @@ const SignUp = () => {
             { isSignup ? 'Sign Up' : 'Sign In' }
           </Button>
           <GoogleLogin
-            clientId="564033717568-e5p23rhvcs4i6kffgsbci1d64r8hp6fn.apps.googleusercontent.com"
+            clientId="981354522000-mpogsmtdie042gl98mb7hpstsjnorfnu.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
                 Google Sign In

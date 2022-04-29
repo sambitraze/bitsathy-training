@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import postRoute from "./routes/posts.js";
+import userRouter from "./routes/user.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ mongoose.connect(DBURL, {
 
 
 app.use("/posts", postRoute);
+app.use("/user", userRouter);
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
