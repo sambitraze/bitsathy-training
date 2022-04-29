@@ -8,11 +8,13 @@ import { Provider } from 'react-redux';
 import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import posts from './reducers/posts';
+import auth from './reducers/auth.js';
 const initialState = {
 }
 const middleware = [thunk];
 const reducer = combineReducers({
   posts: posts,
+  auth: auth
 });
 const store = configureStore({
   reducer, 
